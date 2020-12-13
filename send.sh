@@ -29,9 +29,9 @@ COMMIT_SUBJECT="$(git log -1 "$CI_COMMIT_SHA" --pretty="%s")"
 COMMIT_MESSAGE="$(git log -1 "$CI_COMMIT_SHA" --pretty="%b")" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g'
 
 if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
-  CREDITS="$AUTHOR_NAME authored & committed | https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
+  CREDITS="$AUTHOR_NAME authored & committed \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
 else
-  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed | https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
+  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
 fi
 
 if [ -z $CI_MERGE_REQUEST_ID ]; then
@@ -71,7 +71,7 @@ WEBHOOK_DATA='{
 }'
 
 for ARG in "$@"; do
-  echo -e "[Webhook]: Sending webhook to Discord 222...\\n";
+  echo -e "[Webhook]: Sending webhook to Discord...\\n";
 
   (curl --fail --progress-bar -A "GitLabCI-Webhook" -H Content-Type:application/json -H X-Author:k3rn31p4nic#8383 -d "$WEBHOOK_DATA" "$ARG" \
   && echo -e "\\n[Webhook]: Successfully sent the webhook.") || echo -e "\\n[Webhook]: Unable to send webhook."
