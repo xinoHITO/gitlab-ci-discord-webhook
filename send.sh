@@ -29,9 +29,9 @@ COMMIT_SUBJECT="$(git log -1 "$CI_COMMIT_SHA" --pretty="%s")"
 COMMIT_MESSAGE="$(git log -1 "$CI_COMMIT_SHA" --pretty="%b")" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g'
 
 if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
-  CREDITS="$AUTHOR_NAME authored & committed \n\n DOWNLOAD LINK \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
+  CREDITS="$AUTHOR_NAME authored & committed \n\n DOWNLOAD LINK \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification&job_token=$CI_JOB_TOKEN"
 else
-  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed \n\n DOWNLOAD LINK \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification"
+  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed \n\n DOWNLOAD LINK \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification&job_token=$CI_JOB_TOKEN"
 fi
 
 if [ -z $CI_MERGE_REQUEST_ID ]; then
