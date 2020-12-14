@@ -34,11 +34,12 @@ echo "CI_PIPELINE_ID $CI_PIPELINE_ID"
 echo "CI_PROJECT_TITLE $CI_PROJECT_TITLE"
 echo "CI_PROJECT_NAME $CI_PROJECT_NAME"
 echo "CI_PROJECT_NAMESPACE $CI_PROJECT_NAMESPACE"
+echo "CI_PROJECT_URL $CI_PROJECT_URL"
 
 if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
-  CREDITS="$AUTHOR_NAME authored & committed \n\n DOWNLOAD LINK \n https://gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID /artifacts/download"
+  CREDITS="$AUTHOR_NAME authored & committed \n\n Download link \n https://gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/download"
 else
-  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed \n\n DOWNLOAD LINK \n https://gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID /artifacts/download"
+  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed \n\n Download link \n https://gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/download"
 fi
 
 if [ -z $CI_MERGE_REQUEST_ID ]; then
