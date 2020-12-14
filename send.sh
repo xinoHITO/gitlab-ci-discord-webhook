@@ -28,6 +28,11 @@ COMMITTER_NAME="$(git log -1 "$CI_COMMIT_SHA" --pretty="%cN")"
 COMMIT_SUBJECT="$(git log -1 "$CI_COMMIT_SHA" --pretty="%s")"
 COMMIT_MESSAGE="$(git log -1 "$CI_COMMIT_SHA" --pretty="%b")" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g'
 
+echo "CI_PROJECT_ID $CI_PROJECT_ID"
+echo "CI_JOB_ID $CI_JOB_ID"
+echo "CI_PIPELINE_ID $CI_PIPELINE_ID"
+
+
 if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
   CREDITS="$AUTHOR_NAME authored & committed \n\n DOWNLOAD LINK \n https://gitlab.com/hkannok/test-ci/-/jobs/artifacts/master/download?job=success_notification&job_token=$CI_JOB_TOKEN"
 else
