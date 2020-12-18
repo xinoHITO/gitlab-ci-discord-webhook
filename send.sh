@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DOWNLOAD_LINK=$3
-echo "DOWNLOAD_LINK:$DOWNLOAD_LINK"
 case $1 in
   "success" )
     EMBED_COLOR=3066993
@@ -24,8 +23,6 @@ shift
 if [ $# -lt 2 ]; then
     DOWNLOAD_LINK="$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/download"
 fi
- 
-echo "DOWNLOAD_LINK:$DOWNLOAD_LINK"
 
 if [ $# -lt 1 ]; then
   echo -e "WARNING!!\nYou need to pass the WEBHOOK_URL environment variable as the second argument to this script.\nFor details & guide, visit: https://github.com/DiscordHooks/gitlab-ci-discord-webhook" && exit
@@ -35,8 +32,6 @@ AUTHOR_NAME="$(git log -1 "$CI_COMMIT_SHA" --pretty="%aN")"
 COMMITTER_NAME="$(git log -1 "$CI_COMMIT_SHA" --pretty="%cN")"
 COMMIT_SUBJECT="$(git log -1 "$CI_COMMIT_SHA" --pretty="%s")"
 COMMIT_MESSAGE="$(git log -1 "$CI_COMMIT_SHA" --pretty="%b")" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g'
-
-echo "DOWNLOAD_LINK:$DOWNLOAD_LINK"
 
 if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
   CREDITS="$AUTHOR_NAME authored & committed \n\n Download link \n $DOWNLOAD_LINK"
